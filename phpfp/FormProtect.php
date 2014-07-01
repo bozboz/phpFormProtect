@@ -1,4 +1,7 @@
 <?php
+
+namespace McCarthy\PhpFormProtect;
+
 class FormProtect {
 
 //thresholds
@@ -241,5 +244,14 @@ function validateEmail($formContents) {
 	}
 	return $result;
 	}
+
+static function getViewElements() {
+	$jsPath = preg_replace('/.+(\/vendor\/.+)/', '$1', dirname(__FILE__)) . '/fp.js';
+	ob_start();
+	require dirname(__FILE__) . '/phpfp.php';
+
+	return ob_get_clean();
+	}
 }
+
 ?>
